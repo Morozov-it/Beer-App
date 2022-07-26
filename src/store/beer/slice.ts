@@ -21,20 +21,31 @@ const isLoading = (action: AnyAction) => {
 const beerSlice = createSlice({
     name: 'beer',
     initialState,
-    reducers: {},
+    reducers: {
+        changeQuery: (state, action: PayloadAction<string>) => {
+            state.page = 1
+            state.query = action.payload
+        },
+        changePage: (state, action: PayloadAction<number>) => {
+            state.page = action.payload
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(loadBeer.fulfilled, (state, action) => {
                 state.list = action.payload
+                state.loading = false
             })
             .addMatcher(isLoading, (state) => {
                 state.loading = true
             })
-            .addMatcher(isError, (state, action: PayloadAction<string>) => {
-                state.error = action.payload
+            .addMatcher(isError, (state, action: AnyAction) => {
+                state.error = action.error.message
                 state.loading = false
             })
     }
 })
+
+export const { changeQuery, changePage } = beerSlice.actions
 
 export default beerSlice.reducer

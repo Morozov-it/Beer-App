@@ -1,15 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { fetchBeer } from '../../api'
-import { Beer, BeerState } from './models'
+import { fetchBeer, FetchBeerParams } from '../../api'
+import { Beer } from './models'
 
-export const loadBeer = createAsyncThunk<Beer[], undefined, { rejectValue: string, state: { beer: BeerState} }>(
+export const loadBeer = createAsyncThunk<Beer[], FetchBeerParams, { rejectValue: string }>(
     'beer/loadBeer',
-    async function (_, { rejectWithValue, getState }) {
-        const params = {
-            page: getState().beer.page,
-            per_page: getState().beer.limit,
-            beer_name: getState().beer.query
-        }
+    async function (params, { rejectWithValue }) {
         const response = await fetchBeer<Beer[]>(params)
 
         if (response.status !== 200) {

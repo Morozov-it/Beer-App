@@ -1,9 +1,22 @@
 import React from 'react'
+import { Beer } from '../store/beer'
+import BeerItem from './BeerItem'
+import styles from './styles/BeerList.module.scss'
 
-const BeerList: React.FC = () => {
+interface Props {
+    items: Beer[]
+}
+
+const BeerList: React.FC<Props> = ({ items }) => {
     return (
-        <div>BeerList</div>
+        <div className="row g-2 mt-1 justify-content-center">
+            {items.map((item) =>
+                <div className={`col-12 ${styles.column}`} key={item.id}>
+                    <BeerItem {...item} />
+                </div>
+            )}
+        </div>
     )
 }
 
-export default BeerList
+export default React.memo(BeerList)

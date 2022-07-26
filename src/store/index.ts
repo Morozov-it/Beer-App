@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { beerReducer } from './beer'
+import { basketReducer } from './basket'
 import {useDispatch, useSelector, TypedUseSelectorHook} from 'react-redux';
 
 const store = configureStore({
     reducer: {
         beer: beerReducer,
+        basket: basketReducer,
     },
 })
 
