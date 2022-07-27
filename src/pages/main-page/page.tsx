@@ -2,10 +2,11 @@ import React, { useCallback, useEffect } from 'react'
 import BeerList from '../../components/BeerList'
 import Pagination from '../../components/Pagination'
 import Search from '../../components/Search'
+import Select from '../../components/Select'
 import Spinner from '../../components/Spinner'
 import { useAppDispatch, useAppSelector } from '../../store'
 import { loadBeer } from '../../store/beer'
-import { changePage, changeQuery } from '../../store/beer/slice'
+import { changePage, changeQuery, changeLimit } from '../../store/beer/slice'
 
 const MainPage: React.FC = () => {
     const { list, loading, error } = useAppSelector((state) => ({
@@ -33,11 +34,16 @@ const MainPage: React.FC = () => {
         dispatch(changeQuery(value))
     }, [dispatch])
 
+    const onLimit = useCallback((value: number) => {
+        dispatch(changeLimit(value))
+    }, [dispatch])
+
     return (
         <Spinner active={loading}>
             <h3>The best world's beer</h3>
-            <div>
-                <Search onChange={onSearch}/>
+            <div className='d-flex gap-2'>
+                <Search onChange={onSearch} />
+                <Select value={params.per_page} onChange={onLimit} />
             </div>
             <BeerList items={list} />
             <Pagination page={params.page} limit={params.per_page} onChange={onPage} />

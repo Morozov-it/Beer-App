@@ -17,7 +17,7 @@ const Search: React.FC<Props> = ({ onChange }) => {
     }, [setValue, changeThrottle])
 
     return (
-        <div>
+        <div className='flex-grow-1'>
             <input
                 type="text"
                 className="form-control"

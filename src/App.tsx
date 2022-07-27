@@ -21,7 +21,7 @@ const App: React.FC = () => {
   return (
     <div className={styles.app}>
       <Navbar openModal={openModal} />
-      <div className="container">
+      <div className="container mt-4">
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/:id" element={<ItemPage />} />

@@ -1,9 +1,16 @@
 import React from 'react'
 
-const Select = () => {
+interface Props {
+    value: number
+    onChange: (value: number) => void
+}
+
+const Select: React.FC<Props> = ({ value, onChange }) => {
     return (
-        <div>
-            <select className="form-select" defaultValue={10}>
+        <div className='d-flex align-items-center gap-1'>
+            Limit
+            <select className="form-select" defaultValue={value} onChange={(e) => onChange(Number(e.target.value))}>
+                <option value={12}>12</option>
                 <option value={10}>10</option>
                 <option value={4}>4</option>
             </select>
@@ -11,4 +18,4 @@ const Select = () => {
     )
 }
 
-export default Select
+export default React.memo(Select)

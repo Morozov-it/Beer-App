@@ -12,7 +12,7 @@ const Navbar: React.FC<Props> = ({ openModal }) => {
     const amount = useAppSelector((state) => state.basket.amount)
 
     return (
-        <nav className="navbar navbar-dark bg-dark">
+        <nav className="navbar navbar-dark bg-dark fixed-top">
             <div className="container">
                 <Link to={'/'} className={`btn btn-link ${styles.link}`}>
                     Main

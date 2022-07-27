@@ -29,6 +29,9 @@ const beerSlice = createSlice({
         changePage: (state, action: PayloadAction<number>) => {
             state.page = action.payload
         },
+        changeLimit: (state, action: PayloadAction<number>) => {
+            state.limit = action.payload
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -46,6 +49,6 @@ const beerSlice = createSlice({
     }
 })
 
-export const { changeQuery, changePage } = beerSlice.actions
+export const { changeQuery, changePage, changeLimit } = beerSlice.actions
 
 export default beerSlice.reducer

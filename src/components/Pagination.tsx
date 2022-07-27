@@ -32,7 +32,7 @@ const Pagination: React.FC<Props> = ({ page, limit, onChange, totalCount}) => {
     }, [onChange])
 
     return (
-        <nav className="m-2 d-flex justify-content-end">
+        <nav className="mt-2 mb-2 d-flex justify-content-end">
             <ul className="pagination">
                 {items.map((number, index) => 
                     <li key={index}
