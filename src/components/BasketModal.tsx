@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { useAppDispatch, useAppSelector } from '../store'
 import { deleteFromBasket, increment, decrement } from '../store/basket/slice'
 import BasketTable from './BasketTable'
-import styles from './styles/BasketModal.module.scss'
+import styles from '../styles/BasketModal.module.scss'
 
 interface Props {
     closeModal: () => void

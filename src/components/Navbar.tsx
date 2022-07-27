@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import basket from '../assets/basket.svg'
 import { useAppSelector } from '../store'
-import styles from './styles/Navbar.module.scss'
+import styles from '../styles/Navbar.module.scss'
 
 interface Props {
     openModal: () => void

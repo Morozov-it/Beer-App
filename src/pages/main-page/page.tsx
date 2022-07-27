@@ -39,7 +39,7 @@ const MainPage: React.FC = () => {
     }, [dispatch])
 
     return (
-        <Spinner active={loading}>
+        <div>
             <h3>The best world's beer</h3>
             <div className='d-flex gap-2'>
                 <Search onChange={onSearch} />
@@ -47,8 +47,9 @@ const MainPage: React.FC = () => {
             </div>
             <BeerList items={list} />
             <Pagination page={params.page} limit={params.per_page} onChange={onPage} />
+            {loading && <Spinner />}
             {error && <div className="alert alert-danger mt-3">{error}</div>}
-        </Spinner>
+        </div>
     )
 }
 

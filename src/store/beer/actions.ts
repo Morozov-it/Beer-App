@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { fetchBeer, FetchBeerParams } from '../../api'
-import { Beer } from './models'
+import { FetchBeerParams } from '../../api/models'
+import { fetchBeer } from '../../api'
+import { Beer } from '../../api/models'
 
 export const loadBeer = createAsyncThunk<Beer[], FetchBeerParams, { rejectValue: string }>(
     'beer/loadBeer',

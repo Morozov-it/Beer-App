@@ -1,17 +1,14 @@
 import React from 'react'
-import styles from './styles/Spinner.module.scss'
+import styles from '../styles/Spinner.module.scss'
 
-interface Props {
-    active: boolean
-    children: React.ReactNode
-}
-
-const Spinner: React.FC<Props> = ({ active, children }) => {
-    if (active){
-        return <div className={styles.spinner}>{children}</div>
-    } else {
-        return <div>{children}</div>
-    }
+const Spinner: React.FC = () => {
+    return (
+        <div className={`d-flex justify-content-center align-items-center ${styles.spinner}`}>
+            <div className='spinner-border text-primary' >
+                <span className="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    )
 }
 
 export default React.memo(Spinner)

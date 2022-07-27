@@ -1,7 +1,7 @@
 import React from 'react'
-import { Beer } from '../store/beer'
+import { Beer } from '../api/models'
 import BeerItem from './BeerItem'
-import styles from './styles/BeerList.module.scss'
+import styles from '../styles/BeerList.module.scss'
 
 interface Props {
     items: Beer[]

@@ -1,5 +1,5 @@
 import React from 'react'
-import { BasketBeer } from '../store/basket'
+import { BasketBeer } from '../api/models'
 import getNumberFormat from '../utils/getNumberFormat'
 
 interface Props {
@@ -46,8 +46,8 @@ const BasketTable: React.FC<Props> = ({ items, onDecrement, onIncrement, onDelet
                         </tr>
                     )}
                 </tbody>
-                <div className='fw-bold'>Total: {getNumberFormat(summ)} $</div>
             </table>
+            <div className='fw-bold text-end'>Total: {getNumberFormat(summ)} $</div>
         </div>
     )
 }

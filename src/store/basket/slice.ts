@@ -1,6 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Beer } from '../beer'
-import { BasketState } from './models'
+import { BasketBeer } from '../../api/models'
+
+interface BasketState {
+    list: BasketBeer[]
+    amount: number
+    summ: number
+}
 
 const initialState: BasketState = {
     list: [],
@@ -20,7 +25,7 @@ const basketSlice = createSlice({
     name: 'basket',
     initialState,
     reducers: {
-        addTobasket: (state, action: PayloadAction<Beer>) => {
+        addTobasket: (state, action: PayloadAction<Omit<BasketBeer, 'amount'>>) => {
             const existed = state.list.find((i) => i.id === action.payload.id)
 
             if (existed) {
@@ -30,9 +35,9 @@ const basketSlice = createSlice({
                     }
                     return item
                 })
+            } else {
+                state.list.push({ ...action.payload, amount: 1 })
             }
-
-            state.list.push({ ...action.payload, amount: 1 })
 
             getCountState(state)
         },
