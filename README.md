@@ -8,6 +8,7 @@ https://api.punkapi.com/v2
 - sass;
 - axios;
 - lodash;
+- gh-pages;
 
 ### Styles Bootstrap via cdn
 "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
