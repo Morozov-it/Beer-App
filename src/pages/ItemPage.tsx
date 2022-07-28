@@ -1,12 +1,12 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { beerAPI } from '../../api'
-import Spinner from '../../components/Spinner'
-import { useAppDispatch, useAppSelector } from '../../store'
-import { addTobasket } from '../../store/basket/slice'
-import getNumberFormat from '../../utils/getNumberFormat'
-import styles from '../../styles/ItemPage.module.scss'
-import notImage from '../../assets/no-image.png'
+import { beerAPI } from '../api'
+import Spinner from '../components/Spinner'
+import { useAppDispatch, useAppSelector } from '../store'
+import { addTobasket } from '../store/basket/slice'
+import getNumberFormat from '../utils/getNumberFormat'
+import styles from '../styles/ItemPage.module.scss'
+import notImage from '../assets/no-image.png'
 
 const ItemPage: React.FC = () => {
     const { id = '' } = useParams<{ id: string }>()

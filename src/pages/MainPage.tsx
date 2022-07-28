@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect } from 'react'
-import BeerList from '../../components/BeerList'
-import Pagination from '../../components/Pagination'
-import Search from '../../components/Search'
-import Select from '../../components/Select'
-import Spinner from '../../components/Spinner'
-import { useAppDispatch, useAppSelector } from '../../store'
-import { loadBeer } from '../../store/beer'
-import { changePage, changeQuery, changeLimit } from '../../store/beer/slice'
+import BeerList from '../components/BeerList'
+import Pagination from '../components/Pagination'
+import Search from '../components/Search'
+import Select from '../components/Select'
+import Spinner from '../components/Spinner'
+import { useAppDispatch, useAppSelector } from '../store'
+import { loadBeer } from '../store/beer'
+import { changePage, changeQuery, changeLimit } from '../store/beer/slice'
 
 const MainPage: React.FC = () => {
     const { list, loading, error } = useAppSelector((state) => ({
