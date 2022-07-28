@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { BasketBeer } from '../../api/models'
+import { loadBasket } from './actions'
 
-interface BasketState {
+export interface BasketState {
     list: BasketBeer[]
     amount: number
     summ: number
@@ -19,6 +20,7 @@ const getCountState = (state: BasketState) => {
         acc += item.target_fg * item.amount
         return acc
     }, 0)
+    sessionStorage.setItem('basket', JSON.stringify(state))
 }
 
 const basketSlice = createSlice({
@@ -38,7 +40,7 @@ const basketSlice = createSlice({
             } else {
                 state.list.push({ ...action.payload, amount: 1 })
             }
-
+            //update basket
             getCountState(state)
         },
         deleteFromBasket: (state, action: PayloadAction<number>) => {
@@ -53,7 +55,7 @@ const basketSlice = createSlice({
                 }
                 return item
             })
-
+            //update basket
             getCountState(state)
         },
         decrement: (state, action: PayloadAction<number>) => {
@@ -63,12 +65,27 @@ const basketSlice = createSlice({
                 }
                 return item
             })
-
+            //update basket
             getCountState(state)
         },
+        deleteAll: (state) => {
+            state.list = []
+            state.amount = 0
+            state.summ = 0
+            //update basket
+            getCountState(state)
+        }
     },
+    extraReducers: (builder) => {
+        builder
+            .addCase(loadBasket.fulfilled, (state, action) => {
+                state.list = action.payload.list
+                state.amount = action.payload.amount
+                state.summ = action.payload.summ
+            })
+    }
 })
 
-export const { addTobasket, deleteFromBasket, increment, decrement } = basketSlice.actions
+export const { addTobasket, deleteFromBasket, increment, decrement, deleteAll } = basketSlice.actions
 
 export default basketSlice.reducer

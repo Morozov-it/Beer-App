@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction, AnyAction } from '@reduxjs/toolkit'
 import { loadBeer } from './actions'
 import { Beer } from '../../api/models'
+
 interface BeerState {
     list: Beer[]
     loading: boolean

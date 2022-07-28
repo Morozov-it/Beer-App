@@ -1,13 +1,16 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import styles from './styles/App.module.scss'
 import BasketModal from './components/BasketModal'
 import Navbar from './components/Navbar'
 import { ItemPage } from './pages/item-page'
 import { MainPage } from './pages/main-page'
+import { useAppDispatch } from './store'
+import { loadBasket } from './store/basket/actions'
 
 const App: React.FC = () => {
   const [visible, setVisible] = useState<boolean>(false)
+  const dispatch = useAppDispatch()
 
   const openModal = useCallback(() => {
     setVisible(true)
@@ -17,6 +20,10 @@ const App: React.FC = () => {
     setVisible(false)
     document.body.style.overflow = 'unset'
   }, [])
+
+  useEffect(() => {
+    dispatch(loadBasket())
+  }, [dispatch])
 
   return (
     <div className={styles.app}>

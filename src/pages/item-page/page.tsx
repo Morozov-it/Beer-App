@@ -6,13 +6,14 @@ import { useAppDispatch, useAppSelector } from '../../store'
 import { addTobasket } from '../../store/basket/slice'
 import getNumberFormat from '../../utils/getNumberFormat'
 import styles from '../../styles/ItemPage.module.scss'
+import notImage from '../../assets/no-image.png'
 
 const ItemPage: React.FC = () => {
     const { id = '' } = useParams<{ id: string }>()
     const { data = [], error, isLoading } = beerAPI.useFetchBeerItemQuery(id)
     const item = data[0]
     const basket = useAppSelector((state) => state.basket.list)
-    const inBasket = basket.find((i) => i.id === item.id)?.amount
+    const inBasket = basket.find((i) => i?.id === item?.id)?.amount
     const dispatch = useAppDispatch()
 
     const onClick = () => {
@@ -28,7 +29,7 @@ const ItemPage: React.FC = () => {
             {item ? 
                 <div className={`card text-start ${styles.card}`}>
                     <div className={`p-1 ${styles.image}`}>
-                        <img src={item.image_url} className={styles.img} alt="beer-img" />
+                        <img src={item.image_url || notImage} className={styles.img} alt="beer-img" />
                     </div>
                     <div className="card-body">
                         <h5 className="card-title">{item.name}</h5>

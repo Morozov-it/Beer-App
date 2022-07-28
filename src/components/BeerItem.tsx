@@ -6,6 +6,7 @@ import getNumberFormat from '../utils/getNumberFormat'
 import getShortString from '../utils/getShortString'
 import styles from '../styles/BeerItem.module.scss'
 import { useNavigate } from 'react-router-dom'
+import notImage from '../assets/no-image.png'
 
 const BeerItem: React.FC<Beer> = (item) => {
     const basket = useAppSelector((state) => state.basket.list)
@@ -25,7 +26,7 @@ const BeerItem: React.FC<Beer> = (item) => {
     return (
         <div className={`card ${styles.card}`} onClick={() => navigate(`/${item.id}`)}>
             <div className={`p-1 ${styles.image}`}>
-                <img src={item.image_url} className={styles.img} alt="beer-img" />
+                <img src={item.image_url || notImage} className={styles.img} alt="beer-img" />
             </div>
             <div className="card-body d-flex flex-column">
                 <h5 className="card-title">{item.name}</h5>

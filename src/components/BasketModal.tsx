@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { useAppDispatch, useAppSelector } from '../store'
-import { deleteFromBasket, increment, decrement } from '../store/basket/slice'
+import { deleteFromBasket, increment, decrement, deleteAll } from '../store/basket/slice'
 import BasketTable from './BasketTable'
 import styles from '../styles/BasketModal.module.scss'
 
@@ -9,10 +9,7 @@ interface Props {
 }
 
 const BasketModal: React.FC<Props> = ({ closeModal }) => {
-    const { items, summ } = useAppSelector((state) => ({
-        items: state.basket.list,
-        summ: state.basket.summ
-    }))
+    const basket = useAppSelector((state) => state.basket)
     const dispatch = useAppDispatch()
 
     const onDelete = useCallback((id: number) => {
@@ -27,6 +24,10 @@ const BasketModal: React.FC<Props> = ({ closeModal }) => {
         dispatch(decrement(id))
     }, [dispatch])
 
+    const onDeleteAll = useCallback(() => {
+        dispatch(deleteAll())
+    }, [dispatch])
+
     return (
         <div className={`modal ${styles.modal}`} onClick={() => closeModal()}>
             <div className="modal-dialog modal-dialog-centered modal-lg" onClick={(e) => e.stopPropagation()}>
@@ -37,14 +38,22 @@ const BasketModal: React.FC<Props> = ({ closeModal }) => {
                 </div>
                 <div className="modal-body">
                     <BasketTable
-                        items={items}
-                        summ={summ}
+                        items={basket.list}
+                        summ={basket.summ}
                         onDecrement={onDecrement}
                         onIncrement={onIncrement}
-                        onDelete={onDelete} />
+                        onDelete={onDelete}
+                        />
                 </div>
-                <div className="modal-footer">
-                    <button type="button" className="btn btn-primary">Pay service</button>
+                    <div className="modal-footer">
+                        <button type="button"
+                            className="btn btn-outline-primary"
+                            onClick={onDeleteAll}
+                        >Clear</button>
+                        <button type="button"
+                            className="btn btn-primary"
+                            onClick={() => alert(`You have bought ${basket.amount} beers`)}
+                        >Pay service</button>
                 </div>
                 </div>
             </div>
